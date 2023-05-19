@@ -1,1 +1,151 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Benchmarking Robustness of Adaptation Methods on Pre-trained Vision-Language Models">
+    <meta name="author"
+          content="Shuo Chen, Jindong Gu, Zhen Han, Philip Torr, Volker Tresp">
+
+    <title>Benchmarking Robustness of Adaptation Methods on Pre-trained Vision-Language Models</title>
+    <!-- Bootstrap core CSS -->
+    <!--link href="bootstrap.min.css" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+    <!--    <link rel="icon" href="img/favicon.gif" type="image/gif">-->
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container"></div>
+        <h2>Benchmarking Robustness of Adaptation Methods on Pre-trained Vision-Language Models</h2>
+        <hr>
+        <p class="authors">
+            <a href="https://chenxshuo.github.io/">Shuo Chen<sup>&#9824,&#9827</sup></a>,
+            <a href="https://jindonggu.github.io/">Jindong Gu<sup>&#9830</sup></a>,
+            <a href="https://www.linkedin.com/in/zhen-han-08a769128/">Zhen Han<sup>&#9833</sup></a>,
+            <a href="https://www.robots.ox.ac.uk/~phst/">Philip Torr<sup>&#9830</sup></a>,
+            <a href="https://www.dbs.ifi.lmu.de/~tresp/">Volker Tresp<sup>&#9824</sup></a>,
+        </p>
+        <p class="authors">
+            <sup>&#9824</sup>Institute of Informatics, LMU Munich
+            <sup>&#9827</sup>Corporate Technology, Siemens AG
+            <sup>&#9830</sup>Department of Engineering Science, University of Oxford 
+            <sup>&#9833</sup>Amazon
+        </p>
+        <div class="btn-group" role="group" aria-label="Top menu">
+            <a class="btn btn-primary" href="">Pape TBD</a>
+            
+            <a class="btn btn-primary" href="https://github.com/adarobustness">Code</a>
+        </div>
+    </div>
+    <div class="container">
+        
+    <div class="section">
+        <h2>Abstract</h2>
+        <hr>
+        <p>
+            Various model adaptation methods have been proposed to enhance the performance of pre-trained vision-language models in specific domains while only fine-tuning a few parameters. As test inputs often shift from the target domain in real-world applications, the robustness of these adaptation methods against distribution shifts is essential. In this study, we assess the robustness of 11 widely-used adaptation methods across 4 vision-language datasets under multimodal corruptions. We introduce 7 benchmark datasets that include 96 visual corruptions and 87 textual corruptions. We conduct massive experiments to investigate the robustness of different adaptation methods as well as full fine-tuning, the impact of available examples for adaptation and the influence of trainable adaptation parameters. Our analysis conclude that full fine-tuning does not consistently provide the highest relative robustness; instead, adapters can achieve better robustness while maintaining comparable performance. Moreover, we identify sensitivity to multimodal corruptions, particularly zoom blur image corruption and character-level text corruptions (e.g., character replacement). We also observe that increasing adaptation data and parameters does not guarantee enhanced robustness, and no single adaptation method outperforms others across all tasks and corruptions. We hope this study could serve as a guide for future research in the development of robust model adaptation methods for multimodal models.
+        </p>
+    </div>
+
+
+    <div class="section">
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="figures/corr_example.png" style="width:100%">
+            </div>
+        </div>
+        <p>
+            Multimodal adaptation methods are sensitive to image and text corruptions.
+            The first row is image captioning and the second row shows an example of visual question answering. Blue boxes contain the original image and question text. 
+            Orange boxes present the corrupted images, texts and the corresponding model output.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>
+            Model Adaptation Methods
+        </h2>
+        <hr>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="figures/adapt.png" style="width:100%">
+            </div>
+        </div>
+        <p>
+            We investigate the robustness of four mainstream adaptation methods: full fine-tuning, soft prompt, LoRA, and adapter-based methods including Adapter , Hyperformer, and Compacter. To better understand the robustness of these adaptation methods, we also consider the information sharing across tasks. Therefore, for soft prompt, LoRA, and Compacters, we conduct experiments in both single and multiple manners. The single manner uses one adaptation model for all tasks, while the multiple manner uses independent adaptation modules for different tasks. For Adapter, besides the single and multiple manners, we also adopt the half-shared manner, where only the undersampling module in adapters is shared across tasks. In total, we have eleven adaptation methods
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>
+            Benchmark and Evaluations
+        </h2>
+        <hr>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="figures/corr-eg.png" style="width:100%">
+            </div>
+        </div>
+        <p>
+            Examples of image and text corruptions. The top row shows an original image from GQA and images corrupted by \textit{zoom blur} with 5 levels of severity. The second row presents text corruptions on the original texts where red sign indicates the corrupted parts.
+        </p>
+        <hr>
+
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="figures/corr-img.png" style="width:100%">
+            </div>
+        </div>
+        <p>
+            We introduce 20 corruptions to image data. Except for the blank corruption, each type of corruption has five levels of severity. In total, there are 96 different corruptions
+        </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="section">
+        <h2>Bibtex</h2>
+        <hr>
+        <div class="bibtexsection">
+            @inproceedings{Chen2023Ada,
+                title={Benchmarking Robustness of Adaptation Methods on 
+                    Pre-trained Vision-Language Models},
+                author={Shuo Chen and Jindong Gu and Zhen Han and Philip Torr and 
+                Volker Tresp},
+                journal={TBD},
+                year={2023}
+            }
+        </div>
+    </div>
+
+
+        <footer>
+            <p>
+                Acknowledgement: This page is modified from <a href="https://yilundu.github.io/">Yilun Du</a>.
+            </p>
+        </footer>
+    </div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+crossorigin="anonymous"></script>
+</body>
+</html>
